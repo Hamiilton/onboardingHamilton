@@ -1,0 +1,226 @@
+.survey-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+  
+}
+
+.survey-form {
+    margin-top: 36px;
+    width: 470px;
+    height: 752px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.survey-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 32px;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-bottom: 34px;
+    color: #4B5563;
+}
+
+.survey-field {
+    margin-bottom: 20px;
+}
+
+
+.label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6B7280;
+    line-height: 24px;
+    margin-left: 30px
+}
+
+.options {
+    margin-left: 30px;
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 400;
+    color: #1f2937;
+}
+
+
+.radio-option span {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+
+.survey-container .btn {
+    background-color: #ff6600;
+    height: 38px;
+    width: 117px;
+    margin-left:323px;
+    margin-top: 91px;
+
+}
+
+
+/* ESTILOS CALENDARIO */
+/* Campo de entrada del input */
+.custom-datepicker-input {
+    width: 370px;
+    height: 40px;
+    padding: 10px 16px;
+    font-size: 14px;
+    border: 1px solid #D1D5DB;
+    border-radius: 14px;
+    outline: none;
+    margin-left: 30px;
+}
+
+
+/* Calendario flotante */
+.custom-calendar.react-datepicker {
+    width: 311px;
+    height: 342px;
+    border-radius: 16px;
+    box-shadow: 0px 20px 50px 0px #2C3F5826;
+    border: none;
+    padding: 16px;
+}
+
+.custom-calendar .react-datepicker__header {
+    background-color: white;
+    border-bottom: none;
+}
+
+.custom-calendar .react-datepicker__current-month {
+    font-weight: bold;
+    font-size: 18px;
+    color: #2C3F58;
+    margin-bottom: 16px;
+}
+
+.custom-calendar .react-datepicker__day {
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    border-radius: 50%;
+    font-size: 14px;
+    color: #374151;
+}
+
+.custom-calendar .react-datepicker__day--selected {
+    background-color: #FF6600;
+    color: white;
+}
+
+.custom-calendar .react-datepicker__day:hover {
+    background-color: #fde5d4;
+}
+
+
+@media (max-width: 768px) {
+.survey-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.survey-form {
+    margin-top: 0;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    padding: 24px 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.survey-title {
+    font-size: 22px;
+    margin: 0 0 24px;
+    text-align: left;
+}
+
+.label {
+    font-size: 14px;
+    margin-left: 0;
+}
+
+.options {
+    margin-left: 0;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.radio-option span {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.survey-container .btn {
+    width: 100%;
+    margin: 30px 0 0 0;
+    height: 44px;
+}
+
+.mensaje {
+    font-size: 14px;
+    margin-top: 16px;
+    text-align: center;
+}
+
+.survey-field {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.custom-datepicker-input {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+.custom-calendar .react-datepicker__current-month {
+    font-size: 16px;
+}
+
+.custom-calendar .react-datepicker__day {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+}
+.react-datepicker-wrapper {
+    width: 100% !important;
+    box-sizing: border-box;
+}
+
+
+.custom-calendar.react-datepicker {
+    margin: 0 auto;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+}
+
+}

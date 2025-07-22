@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+
+
+/* INPUTS REUTILIZABLES */
+
+.input {
+    width: 100%;
+    height: 62px;
+    background-color: #F3F4F6;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    padding-left: 26px;
+
+}
+
+.input::placeholder{
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #1F2937;
+}
+
+
+
+/* BOTONES REUTILIZABLES*/
+.btn {
+    width: 369px;
+    height: 59px;
+    border: none;
+    border-radius: 9px;
+    background-color: #FF6600;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+
+    box-shadow: 0px 4px 61px 0px #4D47C366;
+    opacity: 1;
+
+    transition: background-color 0.2s ease;
+}
+
+
+.btn:hover {
+    background-color: #e65900;
+}
+
+
+
+
