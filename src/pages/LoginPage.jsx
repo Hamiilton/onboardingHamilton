@@ -82,6 +82,9 @@ const handleLogin = async (e) => {
       </a>
     </div>
 
+      {errorMessage && (
+        <p className="error-message">{errorMessage}</p>
+      )}
 
 
         <button type="submit" className="btn">Iniciar sesión</button>
