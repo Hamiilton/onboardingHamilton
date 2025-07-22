@@ -27,7 +27,7 @@ const handleLogin = async (e) => {
     localStorage.setItem("email", mail);
 
     console.log("Sesión iniciada. Usuario:", user);
-    navigate("/dashboard")
+    navigate("/survey")
 
     } catch (error) {
     const msg = error.response?.data?.message || "Error al iniciar sesión";
@@ -100,3 +100,4 @@ const handleLogin = async (e) => {
     </div>
 );
 }
+

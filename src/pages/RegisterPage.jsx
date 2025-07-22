@@ -4,8 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import SideBanner from "../components/SideBanner";
 import "../styles/RegisterPage.css";
-
-
+import SuccessModal from "../components/SuccessModal";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -19,7 +18,9 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: ""
   });
+
   const [error, setError] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,44 +28,55 @@ export default function RegisterPage() {
     setError("");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (form.password !== form.confirmPassword) {
-      setError("Las contraseñas no coinciden");
-      return;
-    }
+  if (form.password !== form.confirmPassword) {
+    setError("Las contraseñas no coinciden");
+    return;
+  }
 
-    try {
-      const payload = {
-        email: form.email,
-        user: form.user,
-        phone: form.phone,
-        password: form.password
-      };
-      const res = await axios.post(
-        "https://7wmbjxblzi.execute-api.us-east-1.amazonaws.com/register",
-        payload
-      );
+
+  try {
+    const payload = {
+      email: form.email,
+      user: form.user,
+      phone: form.phone,
+      password: form.password
+    };
+
+    const res = await axios.post(
+      "https://7wmbjxblzi.execute-api.us-east-1.amazonaws.com/register",
+      payload
+    );
+
+    const mensaje = res.data.message;
+
+    if (mensaje === "Registro exitoso") {
       console.log("Registro exitoso:", res.data);
-      navigate("/"); // redirige al login
-    } catch (err) {
-    console.error("Error completo:", err);
-    console.error("response data:", err.response?.data);
+      setShowModal(true);
+    } else {
+      console.warn("⚠️ Error en respuesta:", mensaje);
+      setError(mensaje); 
     }
 
-  };
+  } catch (err) {
+    console.error("Error inesperado:", err);
+    setError("Ocurrió un error inesperado.");
+  } 
+};
 
   return (
-
-    <div className="register-container">
+    <>
+      <div className="register-container">
         <SideBanner
           title="Regístrate"
           subtitle="Te invitamos a crear tu cuenta"
           text="Si ya tienes una cuenta puedes"
           linkText="Iniciar sesión aquí!"
           linkHref="/"
-          />
+        />
+
         <form className="register-form" onSubmit={handleSubmit}>
           <h2 className="register-title">Registrarse</h2>
 
@@ -127,7 +139,7 @@ export default function RegisterPage() {
           </div>
 
           {/* Confirmar contraseña */}
-          <div className="input-register">
+          <div className="input-confirm-password">
             <input
               type={showConfirmPassword ? "text" : "password"}
               name="confirmPassword"
@@ -145,23 +157,38 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* Error */}
-          {error && <p style={{ color: "red", marginBottom: "16px" }}>{error}</p>}
+        {/* Error (con espacio reservado para que no empuje el botón) */}
+        <div style={{ marginTop:0 }}>
+          {error && (
+            <p style={{ color: "red",fontSize:10, margin: 0 }}>{error}</p>
+          )}
+        </div>
 
-          {/* Botón */}
+
           <button type="submit" className="btn">Registrarte</button>
-      <p className="login-or">O ingresa con</p>
 
-      <div className="icons-login">
-        <img src="/img/icons/facebook.png" alt="Facebook Logo" />
-        <img src="/img/icons/apple.png" alt="Apple Logo"></img>
-        <img src="/img/icons/google.png" alt="Google Logo" />
+          
+          <p className="login-or">O ingresa con</p>
+
+          <div className="icons-login">
+            <img src="/img/icons/facebook.png" alt="Facebook Logo" />
+            <img src="/img/icons/apple.png" alt="Apple Logo" />
+            <img src="/img/icons/google.png" alt="Google Logo" />
+          </div>
+        </form>
       </div>
 
-      </form>
-
-
-    </div>
-
+      {/* MODAL DE ÉXITO */}
+      {showModal && (
+        <SuccessModal
+          message="Tu registro ha sido exitoso"
+          buttonText="Iniciar sesion"
+          onClose={() => {
+            setShowModal(false);
+            navigate("/");
+          }}
+        />
+      )}
+    </>
   );
 }

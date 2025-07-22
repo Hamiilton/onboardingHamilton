@@ -60,3 +60,58 @@
     width: 313px;
     height: 556px;
 }
+
+
+@media (max-width: 768px) {
+.side-banner {
+    width: 100%;
+    height: auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin:100px auto 30px auto;
+    box-sizing: border-box;
+    flex-wrap: wrap; 
+}
+
+.banner-text {
+    flex: 1;
+    max-width: 360px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.banner-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #0D0C0C;
+    margin-bottom: 5px;
+}
+
+.banner-subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: #0D0C0C;
+    margin-bottom: 10px;
+}
+
+.banner-link-text {
+    margin-bottom: 10px;
+}
+
+.banner-link {
+    font-size: 15px;
+    color: #FF6600;
+    text-decoration: none;
+}
+
+.banner-image {
+    width: 120px;
+    height: auto;
+    margin-left: 20px;
+}
+}

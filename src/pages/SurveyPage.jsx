@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import Header from "../components/Header";
 import "../styles/SurveyPage.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -60,7 +59,6 @@ export default function SurveyPage() {
 
   return (
     <>
-      <Header />
       <div className="survey-container">
         <form onSubmit={handleSubmit} className="survey-form">
           <h2 className="survey-title">Encuesta</h2>

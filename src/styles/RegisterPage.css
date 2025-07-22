@@ -31,9 +31,9 @@
 
 
 
-.register-form .btn{
-    margin-top: 10px;
+.register-container .btn{
     font-weight: 500;
+    margin-top: 5px;
 }
 
 
@@ -45,6 +45,12 @@
     margin-bottom: 18px;
 }
 
+.input-confirm-password{
+    margin-bottom: 10px;
+    position: relative;
+    width: 100%;
+    height: 62px;
+}
 
 .toggle-password {
     position: absolute;
@@ -76,7 +82,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 20.73px; /* espacio entre íconos */
+    gap: 20.73px; 
     margin-top: 43px;
 }
 
@@ -89,5 +95,83 @@
 }
 
 .icons-register img:hover {
-    transform: scale(1.05); /* opcional para buen UX */
+    transform: scale(1.05); 
+}
+
+
+.error-message {
+    height: 24px;
+    margin-bottom: 16px;
+    color: red;
+    font-size: 14px;
+}
+
+
+
+@media (max-width: 768px) {
+.register-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.register-form {
+    margin: auto;
+    width: 100%;
+    max-width: 369px;
+    box-sizing: border-box;
+}
+
+.register-title {
+    font-size: 26px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+.input-register,
+.input-confirm-password {
+    height: 50px;
+    font-size: 14px;
+}
+
+.toggle-password {
+    right: 20px;
+    width: 16px;
+    height: 16px;
+}
+
+.btn {
+    width: 100%;
+    height: 50px;
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.register-or {
+    margin-top: 40px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.icons-register {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 16px;
+}
+
+.icons-register img {
+    width: 36px;
+    height: 36px;
+}
+
+.error-message {
+    font-size: 14px;
+    margin-bottom: 12px;
+    text-align: left;
+}
 }

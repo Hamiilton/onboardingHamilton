@@ -1,0 +1,11 @@
+.header-logo {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 1000;
+}
+
+.header-logo img {
+    width: 102.34px;
+    height: 28.07px;
+}

@@ -1,18 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import "../styles/Header.css";
 
-export default function Header(){
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.clear();
-        navigate("/")
-    }
-
-    return (
-        <header>
-            <h3>Bienvenido, {localStorage.getItem("username") || "Usuario"}</h3>
-            <button onClick={handleLogout}>Cerrar sesion</button>
-        </header>
-    )
+export default function Header() {
+  return (
+    <div className="header-logo">
+      <img src="/img/icons/compensarLogo.png" alt="Logo Compensar" />
+    </div>
+  );
 }
