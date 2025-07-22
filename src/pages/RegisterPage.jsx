@@ -1,9 +1,16 @@
+import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import SideBanner from "../components/SideBanner";
+import "../styles/RegisterPage.css";
+
+
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [form, setForm] = useState({
     email: "",
@@ -49,29 +56,112 @@ export default function RegisterPage() {
   };
 
   return (
-    <div>
-      <h2>Registrarse</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        {["email","user","phone","password","confirmPassword"].map(name => (
-          <div key={name}>
-            <label>{name === "confirmPassword" ? "Confirmar contraseña" :
-              name.charAt(0).toUpperCase() + name.slice(1)}:</label><br />
+
+    <div className="register-container">
+        <SideBanner
+          title="Regístrate"
+          subtitle="Te invitamos a crear tu cuenta"
+          text="Si ya tienes una cuenta puedes"
+          linkText="Iniciar sesión aquí!"
+          linkHref="/"
+          />
+        <form className="register-form" onSubmit={handleSubmit}>
+          <h2 className="register-title">Registrarse</h2>
+
+          {/* Email */}
+          <div className="input-register">
             <input
-              type={name.includes("password") ? "password" : "text"}
-              name={name}
-              placeholder={
-                name === "user" ? "Nombre de usuario" :
-                name === "phone" ? "Número de celular" : name.charAt(0).toUpperCase() + name.slice(1)
-              }
-              value={form[name]}
+              type="text"
+              name="email"
+              placeholder="Correo electrónico"
+              value={form.email}
               onChange={handleChange}
               required
+              className="input"
             />
           </div>
-        ))}
-        <button type="submit">Registrarse</button>
+
+          {/* Usuario */}
+          <div className="input-register">
+            <input
+              type="text"
+              name="user"
+              placeholder="Nombre de usuario"
+              value={form.user}
+              onChange={handleChange}
+              required
+              className="input"
+            />
+          </div>
+
+          {/* Celular */}
+          <div className="input-register">
+            <input
+              type="text"
+              name="phone"
+              placeholder="Número de celular"
+              value={form.phone}
+              onChange={handleChange}
+              required
+              className="input"
+            />
+          </div>
+
+          {/* Contraseña */}
+          <div className="input-register">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Contraseña"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className="input"
+            />
+            <img
+              src={showPassword ? "/img/icons/eyePassword.png" : "/img/icons/eyePassword.png"}
+              alt="Mostrar/Ocultar contraseña"
+              className="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          </div>
+
+          {/* Confirmar contraseña */}
+          <div className="input-register">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirmar contraseña"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              required
+              className="input"
+            />
+            <img
+              src={showConfirmPassword ? "/img/icons/eyePassword.png" : "/img/icons/eyePassword.png"}
+              alt="Mostrar/Ocultar contraseña"
+              className="toggle-password"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            />
+          </div>
+
+          {/* Error */}
+          {error && <p style={{ color: "red", marginBottom: "16px" }}>{error}</p>}
+
+          {/* Botón */}
+          <button type="submit" className="btn">Registrarte</button>
+      <p className="login-or">O ingresa con</p>
+
+      <div className="icons-login">
+        <img src="/img/icons/facebook.png" alt="Facebook Logo" />
+        <img src="/img/icons/apple.png" alt="Apple Logo"></img>
+        <img src="/img/icons/google.png" alt="Google Logo" />
+      </div>
+
       </form>
+
+
     </div>
+
   );
 }

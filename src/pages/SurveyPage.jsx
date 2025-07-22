@@ -1,17 +1,26 @@
 import { useState } from "react";
 import axios from "axios";
 import Header from "../components/Header";
+import "../styles/SurveyPage.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { es } from 'date-fns/locale'; 
+import SuccessModal from "../components/SuccessModal";
+
 
 export default function SurveyPage() {
-  const user = localStorage.getItem("username");
-  const [fecha, setFecha] = useState("");
-  const [respuestas, setRespuestas] = useState({
-    "Pregunta 1": "",
-    "Pregunta 2": "",
-    "Pregunta 3": "",
-    "Pregunta 4": ""
-  });
-  const [mensaje, setMensaje] = useState("");
+    const user = localStorage.getItem("username");
+    const [startDate, setStartDate] = useState(new Date());
+    const [setMensaje] = useState("");
+
+    const [respuestas, setRespuestas] = useState({
+      "Pregunta 1": "",
+      "Pregunta 2": "",
+      "Pregunta 3": "",
+      "Pregunta 4": ""
+    });
+  
+  const [showModal, setShowModal] = useState(false); 
 
   const handleChangeRespuesta = (pregunta, opcion) => {
     setRespuestas((prev) => ({
@@ -20,70 +29,93 @@ export default function SurveyPage() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-    if (!fecha || Object.values(respuestas).includes("")) {
-      setMensaje("Por favor responde todas las preguntas y selecciona una fecha.");
-      return;
-    }
+      if (!startDate || Object.values(respuestas).includes("")) {
+        setMensaje("Por favor responde todas las preguntas y selecciona una fecha.");
+        return;
+      }
 
-    const encuesta = {
-      fecha,
-      ...respuestas
+      const encuesta = {
+        fecha: startDate,
+        ...respuestas
+      };
+
+      try {
+        const response = await axios.post(
+          "https://7wmbjxblzi.execute-api.us-east-1.amazonaws.com/survey",
+          {
+            user,
+            survey: JSON.stringify(encuesta)
+          });
+          setShowModal(true)
+
+        console.log("Encuesta enviada:", response.data);
+      } catch (error) {
+        console.error("Error al enviar encuesta:", error.response?.data || error.message);
+      }
     };
 
-    try {
-      const response = await axios.post(
-        "https://7wmbjxblzi.execute-api.us-east-1.amazonaws.com/survey",
-        {
-          user,
-          survey: JSON.stringify(encuesta)
-        }
-      );
-      console.log("Encuesta enviada:", response.data);
-      setMensaje("Encuesta enviada con éxito.");
-    } catch (error) {
-      console.error("Error al enviar encuesta:", error.response?.data || error.message);
-      setMensaje("Error al enviar la encuesta.");
-    }
-  };
 
   return (
-    <div>
-        <Header/>
-        <h2>Encuesta</h2>
-        {mensaje && <p>{mensaje}</p>}
-        <form onSubmit={handleSubmit}>
-            <div>
-            <label>Fecha:</label><br />
-            <input
-                type="date"
-                value={fecha}
-                onChange={(e) => setFecha(e.target.value)}
-                required
+    <>
+      <Header />
+      <div className="survey-container">
+        <form onSubmit={handleSubmit} className="survey-form">
+          <h2 className="survey-title">Encuesta</h2>
+          
+          
+          <label className="label">Fecha</label>
+          <div className="survey-field">
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              dateFormat="MMMM d 'de' yyyy"
+              className="custom-datepicker-input"
+              calendarClassName="custom-calendar"
+              popperPlacement="bottom"
+              locale={es}
+              
             />
-            </div>
-            {Object.keys(respuestas).map((pregunta, idx) => (
-            <div key={idx}>
-                <p>{pregunta}</p>
+
+          </div>
+
+          {Object.keys(respuestas).map((pregunta, idx) => (
+            <div className="survey-question" key={idx}>
+              <p className="label">{pregunta}</p>
+              <div className="options">
                 {["A", "B", "C", "D"].map((opcion) => (
-                <label key={opcion}>
+                  <label key={opcion} className="radio-option">
                     <input
-                    type="radio"
-                    name={pregunta}
-                    value={opcion}
-                    checked={respuestas[pregunta] === opcion}
-                    onChange={() => handleChangeRespuesta(pregunta, opcion)}
-                    required
+                      type="radio"
+                      name={pregunta}
+                      value={opcion}
+                      checked={respuestas[pregunta] === opcion}
+                      onChange={() => handleChangeRespuesta(pregunta, opcion)}
+                      required
                     />
-                    {opcion}
-                </label>
+                    <span>{opcion}</span>
+                  </label>
                 ))}
+              </div>
             </div>
-            ))}
-            <button type="submit">Enviar</button>
+          ))}
+
+
+          <button type="submit" className="btn">Enviar</button>
         </form>
-    </div>
-  );
+      </div>
+            {/* MODAL DE ÉXITO */}
+      {showModal && (
+        <SuccessModal
+          message="Tus respuestas se han guardado de manera correcta"
+          buttonText="Terminar"
+          onClose={() => setShowModal(false)}/>      )}
+
+
+      
+    </>
+    
+   );
 }
