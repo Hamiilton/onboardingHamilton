@@ -22,7 +22,7 @@ npm install
 npm run dev
 ```
 
-Esto abrirá el proyecto en [`http://localhost:5173`].
+Esto abrirá el proyecto en [`http://localhost:5173`]
 
 
 
@@ -39,3 +39,4 @@ src/
 ```
 
 ## Despliegue
+[`https://onboarding-ten-steel.vercel.app/`]
