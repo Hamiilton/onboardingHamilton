@@ -1,12 +1,41 @@
-# React + Vite
+# Sistema de Encuestas - Compensar 📝
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación web construida con React + Vite que permite a los usuarios registrarse, iniciar sesión y completar su encuesta. Está diseñado con enfoque en usabilidad móvil y ordenador, componentes reutilizables y estilos.
 
-Currently, two official plugins are available:
+## Tecnologías usadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 18
+- Vite
+- Axios
+- React Router DOM
+- CSS Puro
 
-## Expanding the ESLint configuration
+## Instalación de dependencias
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+```
+
+## Ejecutar localmente
+
+```bash
+npm run dev
+```
+
+Esto abrirá el proyecto en [`http://localhost:5173`].
+
+
+
+## Estructura del proyecto
+
+```
+src/
+├── img/             # Imágenes y logos
+├── components/         # Componentes reutilizables (SideBanner, Modal, etc.)
+├── pages/              # Vistas principales (Login, Register, Survey)
+├── styles/             # CSS modularizado por página
+├── App.jsx             # Componente principal
+└── main.jsx            # Punto de entrada
+```
+
+## Despliegue

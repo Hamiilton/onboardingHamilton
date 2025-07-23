@@ -40,7 +40,8 @@ const handleLogin = async (e) => {
         <SideBanner
         title="Bienvenido"
         subtitle="Ingresa y disfruta"
-        text="Si aún no tienes cuenta puedes"
+        text="Si aún no tienes cuenta"
+        linkIntro="puedes "
         linkText="Registrarte aquí!"
         linkHref="/register"
         />
@@ -82,6 +83,9 @@ const handleLogin = async (e) => {
       </a>
     </div>
 
+      {errorMessage && (
+        <p className="error-message">{errorMessage}</p>
+      )}
 
 
         <button type="submit" className="btn">Iniciar sesión</button>

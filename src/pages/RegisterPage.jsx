@@ -72,8 +72,9 @@ const handleSubmit = async (e) => {
         <SideBanner
           title="Regístrate"
           subtitle="Te invitamos a crear tu cuenta"
-          text="Si ya tienes una cuenta puedes"
-          linkText="Iniciar sesión aquí!"
+          text="Si ya tienes una cuenta"
+          linkIntro="puedes"
+          linkText="Iniciar sesión aquí !"
           linkHref="/"
         />
 
