@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/SuccessModal.css";
+import "../styles/Modal.css";
 
 export default function SuccessModal({ message, onClose, buttonText = "Aceptar" }) {
   return (

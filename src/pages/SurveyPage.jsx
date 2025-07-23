@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
+import Header from "../components/Header";
 import "../styles/SurveyPage.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { es } from 'date-fns/locale'; 
 import SuccessModal from "../components/SuccessModal";
+import LogoutModal from "../components/LogoutModal";
 
 
 export default function SurveyPage() {
@@ -20,6 +22,7 @@ export default function SurveyPage() {
     });
   
   const [showModal, setShowModal] = useState(false); 
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const handleChangeRespuesta = (pregunta, opcion) => {
     setRespuestas((prev) => ({
@@ -56,11 +59,24 @@ export default function SurveyPage() {
       }
     };
 
+    const handleLogout = () => {
+      localStorage.clear();
+      window.location.href = "/";
+    };
+
 
   return (
     <>
+      <Header />
       <div className="survey-container">
+        
         <form onSubmit={handleSubmit} className="survey-form">
+          <img
+            src="/img/icons/logoutIcon.png"
+            alt="Cerrar sesión"
+            className="logout-icon"
+            onClick={() => setShowLogoutModal(true)}
+          />
           <h2 className="survey-title">Encuesta</h2>
           
           
@@ -104,16 +120,22 @@ export default function SurveyPage() {
           <button type="submit" className="btn">Enviar</button>
         </form>
       </div>
-            {/* MODAL DE ÉXITO */}
-      {showModal && (
-        <SuccessModal
-          message="Tus respuestas se han guardado de manera correcta"
-          buttonText="Terminar"
-          onClose={() => setShowModal(false)}/>      )}
+    {/* MODAL DE ÉXITO */}
+    {showModal && (
+      <SuccessModal
+        message="Tus respuestas se han guardado de manera correcta"
+        buttonText="Terminar"
+        onClose={() => setShowModal(false)}
+      />
+    )}
 
-
-      
-    </>
-    
-   );
+    {/* MODAL DE CERRAR SESIÓN */}
+    {showLogoutModal && (
+      <LogoutModal
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={handleLogout}
+      />
+    )}
+  </>
+);
 }

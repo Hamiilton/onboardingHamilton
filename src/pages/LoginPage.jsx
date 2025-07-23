@@ -40,7 +40,8 @@ const handleLogin = async (e) => {
         <SideBanner
         title="Bienvenido"
         subtitle="Ingresa y disfruta"
-        text="Si aún no tienes cuenta puedes"
+        text="Si aún no tienes cuenta"
+        linkIntro="puedes "
         linkText="Registrarte aquí!"
         linkHref="/register"
         />

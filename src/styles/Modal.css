@@ -50,3 +50,11 @@
 .modal-button:hover {
     background-color: #e65c00;
 }
+
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+}

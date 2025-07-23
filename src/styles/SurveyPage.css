@@ -1,4 +1,5 @@
 .survey-container {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,6 +8,7 @@
 }
 
 .survey-form {
+    position: relative;
     margin-top: 36px;
     width: 470px;
     height: 752px;
@@ -124,6 +126,17 @@
 
 .custom-calendar .react-datepicker__day:hover {
     background-color: #fde5d4;
+}
+
+/* LOGOUT ICON */
+.logout-icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 100;
 }
 
 
